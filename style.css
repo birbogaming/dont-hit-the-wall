@@ -146,7 +146,7 @@ body {
 
 #punteggio {
     position: absolute;
-    top: var(--spacing-xxl);
+    top: 5rem;
     right: var(--spacing-lg);
     font-size: var(--font-size-lg);
     color: var(--color-text);
