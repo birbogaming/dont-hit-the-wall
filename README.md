@@ -1,9 +1,15 @@
-![Game Preview](./Title.svg)
+<img src="./Title.svg" width="500" alt="Game Preview">
 
-## Come si gioca?  
+### Come si gioca?
+
 1. **Schiva** i muri premendo SPAZIO
 2. **Pausa** con il tasto ESC
 
-**[🎮 Gioca Ora!](https://birbogaming.github.io/dont-hit-the-wall/)** 
+Attenta a non hittare il wallo troppo presto!
 
-![Anteprima dell'applicazione](anteprima.png)
+### **[GIOCA](https://birbogaming.github.io/dont-hit-the-wall/)** 🎮
+
+<br>
+<br>
+
+<img src="./anteprima.png" width="500" alt="Game Preview">
