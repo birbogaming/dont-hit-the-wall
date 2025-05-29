@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+    --color-background: #f7f7f7;
+    --color-text: #2e2e2e;
+    --color-ground: #2e2e2e;
+    --text-stroke-color: #2e2e2e;
+    --text-stroke-width: 1px;
+    
+    --container-width: 80vw;
+    --container-height: 60vh;
+    --container-max-width: 1000px;
+    --container-max-height: 750px;
+    --ground-thickness: 0.5rem;
+    --ground-offset: 5px;
+
+    --ground-line-visual-bottom-offset: 5px;
+    --ground-line-visual-thickness: 3px;
+
+    --font-size-normal: 1rem;
+    --font-size-title: 1.75rem;
+    --font-size-score: 1.5rem;
+    --font-size-year: 2.25rem;
+    --font-size-message: 1.25rem;
+    --font-size-gameover: 2rem;
+
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 4rem;
+
+    --border-radius: 0.25rem;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-background);
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+#gameAreaWrapper {
+    width: 100vw;
+    height: calc(100vh - var(--spacing-xxl));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#contenitoreGioco {
+    background-color: var(--color-background);
+    position: relative; 
+    overflow: hidden;   
+    image-rendering: pixelated;
+    transform-origin: center center;
+}
+
+#lineaTerreno {
+    position: absolute;
+    bottom: var(--ground-line-visual-bottom-offset);
+    left: 0;
+    width: 100%;
+    height: var(--ground-line-visual-thickness);
+    background-color: var(--color-ground);
+    z-index: 10;
+}
+
+#titoloGioco {
+    position: absolute;
+    top: var(--spacing-xxl);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    max-width: 400px;
+    height: auto;
+    z-index: 100;
+}
+
+#player {
+    width: 5rem;
+    height: 5rem;
+    background-color: transparent; 
+    background-image: url('sprite/0.svg');
+    background-size: contain; 
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 3.125rem;
+    transition: none;
+    z-index: 55;
+}
+
+.collider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.collider-player {
+    border: 0.125rem solid rgba(0, 128, 0, 0.01);
+}
+
+.collider-ostacolo {
+    border: 0.125rem solid rgba(255, 0, 0, 0.01);
+}
+
+.ostacolo {
+    width: 2.5rem;
+    height: 5rem;
+    background-color: transparent; 
+    background-image: url('sprite/muro.svg');
+    background-size: contain; 
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 50;
+}
+
+.nuvola {
+    width: 1.875rem;
+    height: 0.9375rem;
+    background-color: var(--color-background); 
+    position: absolute;
+    background-image: url('sprite/nuvola.svg'); 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    z-index: 5;
+}
+
+#punteggio {
+    position: absolute;
+    top: var(--spacing-xxl);
+    right: var(--spacing-lg);
+    font-size: var(--font-size-score);
+    color: var(--color-text);
+    font-weight: bold;
+    z-index: 100;
+}
+
+#displayAnno {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-year);
+    color: var(--color-background);
+    -webkit-text-stroke: var(--text-stroke-width) var(--text-stroke-color);
+    text-stroke: var(--text-stroke-width) var(--text-stroke-color);
+    text-shadow: 
+        calc(-1 * var(--text-stroke-width)) calc(-1 * var(--text-stroke-width)) 0 var(--text-stroke-color),
+        var(--text-stroke-width) calc(-1 * var(--text-stroke-width)) 0 var(--text-stroke-color),
+        calc(-1 * var(--text-stroke-width)) var(--text-stroke-width) 0 var(--text-stroke-color),
+        var(--text-stroke-width) var(--text-stroke-width) 0 var(--text-stroke-color);
+    font-weight: bold;
+    z-index: 100;
+}
+
+#iconaTortaAnno {
+    height: calc(var(--font-size-year) * 3);
+    width: auto;
+    margin-right: 0.2em;
+}
+
+#testoAnno {
+    margin-top: 1em;
+}
+
+#messaggioInizio {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--font-size-message);
+    color: var(--color-background);
+    -webkit-text-stroke: var(--text-stroke-width) var(--text-stroke-color);
+    text-stroke: var(--text-stroke-width) var(--text-stroke-color);
+    text-shadow: 
+        calc(-1 * var(--text-stroke-width)) calc(-1 * var(--text-stroke-width)) 0 var(--text-stroke-color),
+        var(--text-stroke-width) calc(-1 * var(--text-stroke-width)) 0 var(--text-stroke-color),
+        calc(-1 * var(--text-stroke-width)) var(--text-stroke-width) 0 var(--text-stroke-color),
+        var(--text-stroke-width) var(--text-stroke-width) 0 var(--text-stroke-color);
+    text-align: center;
+    line-height: 1.5;
+    z-index: 101;
+}
+
+#messaggioGameOver {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--font-size-gameover);
+    text-align: center;
+    line-height: 1.5;
+    z-index: 101;
+    display: none;
+}
+
+.game-over-title {
+    color: var(--color-text);
+    font-weight: bold;
+}
+
+.game-over-text {
+    color: var(--color-background);
+    -webkit-text-stroke: var(--text-stroke-width) var(--text-stroke-color);
+    text-stroke: var(--text-stroke-width) var(--text-stroke-color);
+    text-shadow: 
+        calc(-1 * var(--text-stroke-width)) calc(-1 * var(--text-stroke-width)) 0 var(--text-stroke-color),
+        var(--text-stroke-width) calc(-1 * var(--text-stroke-width)) 0 var(--text-stroke-color),
+        calc(-1 * var(--text-stroke-width)) var(--text-stroke-width) 0 var(--text-stroke-color),
+        var(--text-stroke-width) var(--text-stroke-width) 0 var(--text-stroke-color);
+}
+
+#messaggioRiavvio {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--font-size-message);
+    color: var(--color-background);
+    -webkit-text-stroke: var(--text-stroke-width) var(--text-stroke-color);
+    text-stroke: var(--text-stroke-width) var(--text-stroke-color);
+    text-shadow: 
+        calc(-1 * var(--text-stroke-width)) calc(-1 * var(--text-stroke-width)) 0 var(--text-stroke-color),
+        var(--text-stroke-width) calc(-1 * var(--text-stroke-width)) 0 var(--text-stroke-color),
+        calc(-1 * var(--text-stroke-width)) var(--text-stroke-width) 0 var(--text-stroke-color),
+        var(--text-stroke-width) var(--text-stroke-width) 0 var(--text-stroke-color);
+    text-align: center;
+    line-height: 1.5;
+    display: none;
+    z-index: 101;
+}

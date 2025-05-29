@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don't Hit the Wall</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="Title.svg" id="titoloGioco" alt="Don't Hit the Wall!">
+    <div id="gameAreaWrapper">
+        <div id="contenitoreGioco">        
+            <div id="player"></div>
+            <div id="lineaTerreno"></div>
+            <div id="punteggio">00000</div>
+            <div id="displayAnno"><img src="torta.svg" alt="Torta" id="iconaTortaAnno"><span id="testoAnno">18</span></div>
+            <div id="messaggioInizio">
+                Premi SPAZIO per iniziare
+            </div>
+            <div id="messaggioGameOver">
+                <!-- testo impostato da JS -->
+            </div>
+            <div id="messaggioRiavvio">
+                Premi SPAZIO per riavviare
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script> 
+</body>
+</html>
