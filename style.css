@@ -71,18 +71,6 @@ body {
     transform-origin: center center;
 }
 
-@media screen and (orientation: portrait) {
-    #contenitoreGioco {
-        transform: rotate(90deg);
-        width: 100vh; 
-        height: 100vw;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(90deg);
-    }
-}
-
 #lineaTerreno {
     position: absolute;
     bottom: var(--ground-line-visual-bottom-offset);
