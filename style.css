@@ -148,7 +148,7 @@ body {
     position: absolute;
     top: var(--spacing-xxl);
     right: var(--spacing-lg);
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     color: var(--color-text);
     font-weight: bold;
     z-index: 100;
@@ -164,7 +164,7 @@ body {
     font-size: var(--font-size-xxl);
     color: var(--color-background);
     -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
-    text-stroke: var(--text-stroke-md) var(--text-stroke-color);
+    /*text-stroke: var(--text-stroke-md) var(--text-stroke-color);*/
     text-shadow: 
         calc(-1 * var(--text-stroke-md)) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
         var(--text-stroke-md) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
@@ -192,7 +192,7 @@ body {
     font-size: var(--font-size-lg);
     color: var(--color-background);
     -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
-    text-stroke: var(--text-stroke-md) var(--text-stroke-color);
+    /*text-stroke: var(--text-stroke-md) var(--text-stroke-color);*/
     text-shadow: 
         calc(-1 * var(--text-stroke-md)) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
         var(--text-stroke-md) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
@@ -223,7 +223,7 @@ body {
 .game-over-text {
     color: var(--color-background);
     -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
-    text-stroke: var(--text-stroke-md) var(--text-stroke-color);
+    /*text-stroke: var(--text-stroke-md) var(--text-stroke-color);*/
     text-shadow: 
         calc(-1 * var(--text-stroke-md)) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
         var(--text-stroke-md) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
@@ -239,7 +239,7 @@ body {
     font-size: var(--font-size-lg);
     color: var(--color-background);
     -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
-    text-stroke: var(--text-stroke-md) var(--text-stroke-color);
+    /*text-stroke: var(--text-stroke-md) var(--text-stroke-color);*/
     text-shadow: 
         calc(-1 * var(--text-stroke-md)) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
         var(--text-stroke-md) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
