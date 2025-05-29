@@ -5,7 +5,7 @@
 1. **Schiva** i muri premendo SPAZIO
 2. **Pausa** con il tasto ESC
 
-Attenta a non hittare il wallo troppo presto!
+Bevi del buon vino, ma stai attenta a non hittare il wallo troppo presto!
 
 ### **[GIOCA](https://birbogaming.github.io/dont-hit-the-wall/)** 🎮
 
