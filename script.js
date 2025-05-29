@@ -36,15 +36,26 @@ class GiocoRunner {
         this.player.style.bottom = `${this.config.PLAYER_POS_FONDO}px`;
         this.player.style.backgroundImage = `url('${this.config.SPRITE_PLAYER_BASE_PATH}${this.config.SPRITE_PLAYER_PREFISSO}0${this.config.SPRITE_PLAYER_ESTENSIONE}')`;
 
-        const colliderPlayer = document.createElement('div');
-        colliderPlayer.className = 'collider collider-player';
-        colliderPlayer.style.width = `${this.config.PLAYER_COLLIDER_LARGHEZZA}px`;
-        colliderPlayer.style.height = `${this.config.PLAYER_COLLIDER_ALTEZZA}px`;
-        colliderPlayer.style.left = `${this.config.PLAYER_COLLIDER_OFFSET_X}px`;
-        colliderPlayer.style.top = `${this.config.PLAYER_COLLIDER_OFFSET_Y}px`;
+        const colliderPlayer = this._creaColliderElement({
+            className: 'collider-player',
+            larghezza: this.config.PLAYER_COLLIDER_LARGHEZZA,
+            altezza: this.config.PLAYER_COLLIDER_ALTEZZA,
+            offsetX: this.config.PLAYER_COLLIDER_OFFSET_X,
+            offsetY: this.config.PLAYER_COLLIDER_OFFSET_Y
+        });
         this.player.appendChild(colliderPlayer);
 
         this.velocitaAnimazioneCorsa = this.config.VELOCITA_ANIMAZIONE_CORSA_MS;
+    }
+
+    _creaColliderElement(configCollider) {
+        const colliderEl = document.createElement('div');
+        colliderEl.className = `collider ${configCollider.className}`;
+        colliderEl.style.width = `${configCollider.larghezza}px`;
+        colliderEl.style.height = `${configCollider.altezza}px`;
+        colliderEl.style.left = `${configCollider.offsetX}px`;
+        colliderEl.style.top = `${configCollider.offsetY}px`;
+        return colliderEl;
     }
 
     precaricaImmaginiStatiche() {
@@ -64,8 +75,6 @@ class GiocoRunner {
         this.velocitaGioco = this.config.VELOCITA_GIOCO_INIZIALE;
         this.ostacoli = [];
         this.nuvole = [];
-        this.staSaltando = false;
-        this.playerVelocityY = 0;
         this.tempoUltimoOstacolo = 0;
         this.tempoUltimaNuvola = 0;
         this.animationId = null;
@@ -107,7 +116,6 @@ class GiocoRunner {
             this.gestisciSpazio();
         });
 
-        // Aggiungi gestione per redimensionamento della finestra
         window.addEventListener('resize', () => {
             this.handleResize();
         });
@@ -175,10 +183,8 @@ class GiocoRunner {
         this.displayAnno.style.display = 'flex';
         this.tempoUltimoAumentoAnno = performance.now();
         this.lastFrameTime = performance.now();
-        this.testoAnno.textContent = this.annoCorrente;
-        this.player.style.bottom = `${this.config.PLAYER_POS_FONDO}px`;
-        this.playerVelocityY = 0;
-        this.staSaltando = false;
+        this.aggiornaDisplayInfo();
+        this.resetPlayerState();
         this.player.style.backgroundImage = `url('${this.spriteCorsa[0]}')`;
         this.pausa = false;
         this.tempoUltimoPuntoSecondo = performance.now();
@@ -232,12 +238,13 @@ class GiocoRunner {
         ostacoloEl.style.bottom = `${this.config.OSTACOLO_POS_FONDO}px`; 
         this.contenitore.appendChild(ostacoloEl);
 
-        const colliderOstacolo = document.createElement('div');
-        colliderOstacolo.className = 'collider collider-ostacolo';
-        colliderOstacolo.style.width = `${this.config.OSTACOLO_COLLIDER_LARGHEZZA}px`;
-        colliderOstacolo.style.height = `${this.config.OSTACOLO_COLLIDER_ALTEZZA}px`;
-        colliderOstacolo.style.left = `${this.config.OSTACOLO_COLLIDER_OFFSET_X}px`;
-        colliderOstacolo.style.top = `${this.config.OSTACOLO_COLLIDER_OFFSET_Y}px`;
+        const colliderOstacolo = this._creaColliderElement({
+            className: 'collider-ostacolo',
+            larghezza: this.config.OSTACOLO_COLLIDER_LARGHEZZA,
+            altezza: this.config.OSTACOLO_COLLIDER_ALTEZZA,
+            offsetX: this.config.OSTACOLO_COLLIDER_OFFSET_X,
+            offsetY: this.config.OSTACOLO_COLLIDER_OFFSET_Y
+        });
         ostacoloEl.appendChild(colliderOstacolo);
         
         this.ostacoli.push({
@@ -456,10 +463,8 @@ class GiocoRunner {
 
         this.testoAnno.textContent = this.annoCorrente; 
         this.elementoPunteggio.textContent = this.punteggio.toString().padStart(this.config.PUNTEGGIO_PADDING, '0');
-        
-        this.player.style.bottom = `${this.config.PLAYER_POS_FONDO}px`;
-        this.playerVelocityY = 0;
-        this.staSaltando = false;
+        this.aggiornaDisplayInfo();
+        this.resetPlayerState();
     }
 
     riavviaGioco() {
@@ -467,14 +472,21 @@ class GiocoRunner {
         this.nuvole.forEach(nuvola => nuvola.elemento.remove());
         
         this.inizializzaVariabili();
-        this.testoAnno.textContent = this.annoCorrente; 
-        this.elementoPunteggio.textContent = this.punteggio.toString().padStart(this.config.PUNTEGGIO_PADDING, '0');
-        
+        this.aggiornaDisplayInfo();
+        this.resetPlayerState();
+
+        this.iniziaGioco();
+    }
+
+    resetPlayerState() {
         this.player.style.bottom = `${this.config.PLAYER_POS_FONDO}px`;
         this.playerVelocityY = 0;
         this.staSaltando = false;
+    }
 
-        this.iniziaGioco();
+    aggiornaDisplayInfo() {
+        this.testoAnno.textContent = this.annoCorrente;
+        this.elementoPunteggio.textContent = this.punteggio.toString().padStart(this.config.PUNTEGGIO_PADDING, '0');
     }
 }
 

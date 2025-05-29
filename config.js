@@ -3,10 +3,10 @@ const CONFIG = {
     CONTENITORE_LARGHEZZA: 900,
     CONTENITORE_ALTEZZA: 400,
     TERRENO_SPESSORE: 3,
-    TERRENO_OFFSET_DAL_FONDO_PX: 10,
+    TERRENO_OFFSET_DAL_FONDO_PX: 9,
 
     // ============== GLOBALE ==============
-    VELOCITA_GIOCO_INIZIALE: 3.4,
+    VELOCITA_GIOCO_INIZIALE: 3.5,
     VELOCITA_INCREMENTO_BASE: 0.4, // Incremento per ogni "anno" superato
     VELOCITA_INCREMENTO_ANNO_OLTRE_25: 0.2,
     VELOCITA_INCREMENTO_ANNO_OLTRE_30: 0.1,
@@ -26,9 +26,9 @@ const CONFIG = {
     PLAYER_COLLIDER_OFFSET_Y: 0,
     PLAYER_POS_SINISTRA: 50,    // Posizione X fissa dal bordo sinistro
     PLAYER_POS_FONDO: 0,        // Posizione Y dal bordo inferiore del contenitore
-    PLAYER_ALTEZZA_SALTO_RELATIVA: 150,
-    VELOCITA_ANIMAZIONE_CORSA_MS: 80, // Millisecondi per frame della corsa
-    FATTORE_RALLENTAMENTO_ANIM_SALTO: 2,
+    PLAYER_ALTEZZA_SALTO_RELATIVA: 145,
+    VELOCITA_ANIMAZIONE_CORSA_MS: 90, // Millisecondi per frame della corsa
+    FATTORE_RALLENTAMENTO_ANIM_SALTO: 3,
 
     // ============== FISICA DEL SALTO  ==============
     GRAVITY: 0.9, 
@@ -48,8 +48,8 @@ const CONFIG = {
     NUVOLA_LARGHEZZA: 90,
     NUVOLA_ALTEZZA: 60,
     NUVOLA_START_X: 1200,
-    NUVOLA_TOP_MIN: 90,
-    NUVOLA_TOP_MAX: 150,
+    NUVOLA_TOP_MIN: 100,
+    NUVOLA_TOP_MAX: 180,
 
     // ============== PUNTEGGIO E PROGRESSIONE ==============
     PUNTEGGIO_PADDING: 5,
