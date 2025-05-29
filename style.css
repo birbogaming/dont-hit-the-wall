@@ -144,6 +144,13 @@ body {
     z-index: 5;
 }
 
+.collezionabile {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 49;
+}
+
 #punteggio {
     position: absolute;
     top: 5rem;
@@ -178,10 +185,12 @@ body {
     height: calc(var(--font-size-xxl) * 3);
     width: auto;
     margin-right: 0.2em;
+    transform-origin: center;
 }
 
 #testoAnno {
     margin-top: 1em;
+    transform-origin: center;
 }
 
 #messaggioInizio {
@@ -249,4 +258,17 @@ body {
     line-height: 1.5;
     display: none;
     z-index: 101;
+}
+
+.year-increase-animation {
+    animation: scaleUpAndDown 0.5s ease-in-out;
+}
+
+@keyframes scaleUpAndDown {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }

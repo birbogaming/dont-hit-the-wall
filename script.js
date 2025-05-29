@@ -19,6 +19,7 @@ class GiocoRunner {
         this.messaggioGameOver = document.getElementById('messaggioGameOver');
         this.displayAnno = document.getElementById('displayAnno');
         this.testoAnno = document.getElementById('testoAnno');
+        this.iconaTortaAnno = document.getElementById('iconaTortaAnno');
         this.messaggioRiavvio = document.getElementById('messaggioRiavvio');
 
         document.documentElement.style.setProperty('--ground-line-visual-thickness', `${this.config.TERRENO_SPESSORE}px`);
@@ -67,6 +68,9 @@ class GiocoRunner {
         
         this.immagineSasso = new Image();
         this.immagineSasso.src = this.config.SPRITE_SASSO_PATH;
+
+        this.immagineCollezionabileVino = new Image();
+        this.immagineCollezionabileVino.src = this.config.SPRITE_COLLEZIONABILE_WINE_PATH;
     }
 
     inizializzaVariabili() {
@@ -75,8 +79,10 @@ class GiocoRunner {
         this.velocitaGioco = this.config.VELOCITA_GIOCO_INIZIALE;
         this.ostacoli = [];
         this.nuvole = [];
+        this.collezionabili = [];
         this.tempoUltimoOstacolo = 0;
         this.tempoUltimaNuvola = 0;
+        this.tempoUltimoCollezionabile = 0;
         this.animationId = null;
         this.tempoGameOver = 0;
         this.pausa = false;
@@ -270,6 +276,34 @@ class GiocoRunner {
         });
     }
 
+    creaCollezionabile() {
+        const collezionabileEl = document.createElement('div');
+        collezionabileEl.className = 'collezionabile';
+        collezionabileEl.style.left = `${this.config.COLLEZIONABILE_START_X}px`;
+        collezionabileEl.style.width = `${this.config.COLLEZIONABILE_LARGHEZZA}px`;
+        collezionabileEl.style.height = `${this.config.COLLEZIONABILE_ALTEZZA}px`;
+        collezionabileEl.style.backgroundImage = `url('${this.immagineCollezionabileVino.src}')`;
+        
+        const randomBottom = Math.random() * (this.config.COLLEZIONABILE_POS_FONDO_MAX - this.config.COLLEZIONABILE_POS_FONDO_MIN) + this.config.COLLEZIONABILE_POS_FONDO_MIN;
+        collezionabileEl.style.bottom = `${randomBottom}px`;
+        this.contenitore.appendChild(collezionabileEl);
+
+        const colliderCollezionabile = this._creaColliderElement({
+            className: 'collider-collezionabile',
+            larghezza: this.config.COLLEZIONABILE_COLLIDER_LARGHEZZA,
+            altezza: this.config.COLLEZIONABILE_COLLIDER_ALTEZZA,
+            offsetX: this.config.COLLEZIONABILE_COLLIDER_OFFSET_X,
+            offsetY: this.config.COLLEZIONABILE_COLLIDER_OFFSET_Y
+        });
+        collezionabileEl.appendChild(colliderCollezionabile);
+
+        this.collezionabili.push({
+            elemento: collezionabileEl,
+            x: this.config.COLLEZIONABILE_START_X,
+            y: randomBottom // Store y for collision detection if needed, though bottom is set directly
+        });
+    }
+
     aggiornaOstacoli(deltaTime) {
         const spostamento = this.velocitaGioco * (deltaTime / (1000 / 60));
 
@@ -303,6 +337,22 @@ class GiocoRunner {
             if (nuvola.x < -this.config.NUVOLA_LARGHEZZA) {
                 nuvola.elemento.remove();
                 this.nuvole.splice(i, 1);
+            }
+        }
+    }
+
+    aggiornaCollezionabili(deltaTime) {
+        const spostamento = this.velocitaGioco * (deltaTime / (1000 / 60));
+
+        for (let i = this.collezionabili.length - 1; i >= 0; i--) {
+            const collezionabile = this.collezionabili[i];
+            collezionabile.x -= spostamento;
+            collezionabile.elemento.style.left = `${collezionabile.x}px`;
+
+            // Rimuovi il collezionabile quando è completamente fuori schermo
+            if (collezionabile.x < -this.config.COLLEZIONABILE_LARGHEZZA) {
+                collezionabile.elemento.remove();
+                this.collezionabili.splice(i, 1);
             }
         }
     }
@@ -342,6 +392,27 @@ class GiocoRunner {
             if (this.collisione(posPlayer, posOstacolo)) {
                 this.gameOver();
                 return true;
+            }
+        }
+        
+        for (let i = this.collezionabili.length - 1; i >= 0; i--) {
+            const collezionabile = this.collezionabili[i];
+            const ySpriteBottomCollezionabile = parseFloat(collezionabile.elemento.style.bottom);
+            const yColliderBottomCollezionabile = (ySpriteBottomCollezionabile + this.config.COLLEZIONABILE_ALTEZZA) - this.config.COLLEZIONABILE_COLLIDER_OFFSET_Y - this.config.COLLEZIONABILE_COLLIDER_ALTEZZA;
+
+            const posCollezionabile = {
+                x: collezionabile.x + this.config.COLLEZIONABILE_COLLIDER_OFFSET_X,
+                y: yColliderBottomCollezionabile, 
+                larghezza: this.config.COLLEZIONABILE_COLLIDER_LARGHEZZA,
+                altezza: this.config.COLLEZIONABILE_COLLIDER_ALTEZZA
+            };
+
+            if (this.collisione(posPlayer, posCollezionabile)) {
+                collezionabile.elemento.remove();
+                this.collezionabili.splice(i, 1);
+                this.aggiornaPunteggio(this.config.COLLEZIONABILE_PUNTI);
+                // Aggiungi suono raccolta oggetto
+                // this.riproduciSuono('raccolta');
             }
         }
         
@@ -386,6 +457,16 @@ class GiocoRunner {
                 this.annoCorrente++;
                 this.testoAnno.textContent = this.annoCorrente;
                 this.velocitaGioco += this.config.VELOCITA_INCREMENTO_BASE;
+
+                // Applica l'animazione
+                this.testoAnno.classList.add('year-increase-animation');
+                this.iconaTortaAnno.classList.add('year-increase-animation');
+
+                // Rimuovi l'animazione dopo che è terminata
+                setTimeout(() => {
+                    this.testoAnno.classList.remove('year-increase-animation');
+                    this.iconaTortaAnno.classList.remove('year-increase-animation');
+                }, 500); // Durata dell'animazione in ms
                 
                 // Applica incrementi di velocità progressivi basati sull'anno
                 if (this.annoCorrente > 25) {
@@ -414,6 +495,7 @@ class GiocoRunner {
         this.aggiornaPosizionePlayer(cappedDeltaTime);
         this.aggiornaOstacoli(cappedDeltaTime);
         this.aggiornaNuvole(cappedDeltaTime);
+        this.aggiornaCollezionabili(cappedDeltaTime);
         
         const collisione = this.verificaCollisioni();
         if (collisione) {
@@ -440,6 +522,14 @@ class GiocoRunner {
         if (tempoCorrente - this.tempoUltimaNuvola > this.config.INTERVALLO_CREAZIONE_NUVOLA_MIN_MS + Math.random() * this.config.INTERVALLO_CREAZIONE_NUVOLA_RANDOM_MS) {
             this.creaNuvola();
             this.tempoUltimaNuvola = tempoCorrente;
+        }
+
+        let intervalloCreazioneCollezionabile = this.config.INTERVALLO_CREAZIONE_COLLEZIONABILE_MIN_MS / (this.velocitaGioco / this.config.VELOCITA_GIOCO_INIZIALE);
+        intervalloCreazioneCollezionabile = Math.max(intervalloCreazioneCollezionabile, 1500); // Assicura un intervallo minimo
+
+        if (tempoCorrente - this.tempoUltimoCollezionabile > intervalloCreazioneCollezionabile + Math.random() * this.config.INTERVALLO_CREAZIONE_COLLEZIONABILE_RANDOM_MS) {
+            this.creaCollezionabile();
+            this.tempoUltimoCollezionabile = tempoCorrente;
         }
 
         this.animationId = requestAnimationFrame((newTimestamp) => this.cicloGioco(newTimestamp));
@@ -470,6 +560,7 @@ class GiocoRunner {
     riavviaGioco() {
         this.ostacoli.forEach(ostacolo => ostacolo.elemento.remove());
         this.nuvole.forEach(nuvola => nuvola.elemento.remove());
+        this.collezionabili.forEach(collezionabile => collezionabile.elemento.remove());
         
         this.inizializzaVariabili();
         this.aggiornaDisplayInfo();
