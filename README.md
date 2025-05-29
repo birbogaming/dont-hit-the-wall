@@ -1,5 +1,3 @@
-# Don't Hit The Wall 🎮💥  
-
 ![Game Preview](./Title.svg)
 
 ## Come si gioca?  
