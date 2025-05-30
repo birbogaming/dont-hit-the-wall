@@ -262,7 +262,7 @@ body {
         height: 20vh;
     }
     #displayAnno {
-        left: var(--spacing-md);
+        left: var(--spacing-sm);
         transform: none;
         font-size: var(--font-size-xl);
     }
