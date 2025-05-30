@@ -548,7 +548,7 @@ class GiocoRunner {
 
     gameOver() {
         this.stato = 'gameOver';
-        this.messaggioGameOver.innerHTML = `<span class="game-over-title">GAME OVER</span><br><span class="game-over-text">hai hittato il wallo all\'età di ${this.annoCorrente} anni</span>`;
+        this.messaggioGameOver.innerHTML = `<span class="game-over-title">GAME OVER</span><br><span class="game-over-text">hai hittato il wallo all\'età di </span><span class="game-over-title">${this.annoCorrente} anni</span>`;
         this.messaggioGameOver.style.display = 'block';
         this.messaggioRiavvio.style.display = 'block';
         this.displayAnno.style.display = 'none';
