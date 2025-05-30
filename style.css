@@ -200,7 +200,7 @@ body {
     color: var(--color-background);
     -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.4;
     z-index: 101;
 }
 
@@ -211,7 +211,7 @@ body {
     transform: translate(-50%, -50%);
     font-size: var(--font-size-xl);
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.4;
     z-index: 101;
     display: none;
 }
@@ -235,7 +235,7 @@ body {
     color: var(--color-background);
     -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.4;
     display: none;
     z-index: 101;
 }
