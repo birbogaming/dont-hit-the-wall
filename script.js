@@ -130,18 +130,29 @@ class GiocoRunner {
 
     handleResize() {
         if (!this.gameAreaWrapper || !this.contenitore) return;
-
+    
         const wrapperWidth = this.gameAreaWrapper.offsetWidth;
         const wrapperHeight = this.gameAreaWrapper.offsetHeight;
-
-        const gameWidth = this.config.CONTENITORE_LARGHEZZA;
-        const gameHeight = this.config.CONTENITORE_ALTEZZA;
-
+        
+        const wrapperRatio = wrapperWidth / wrapperHeight;
+        
+        let gameWidth, gameHeight;
+        
+        if (wrapperRatio < 1.5) {
+            // Portrait: riempi tutta la larghezza, mantieni aspect ratio originale
+            gameWidth = wrapperWidth;
+            gameHeight = gameWidth / (this.config.CONTENITORE_LARGHEZZA / this.config.CONTENITORE_ALTEZZA);
+        } else {
+            // Landscape: usa dimensioni originali
+            gameWidth = this.config.CONTENITORE_LARGHEZZA;
+            gameHeight = this.config.CONTENITORE_ALTEZZA;
+        }
+    
         const scaleX = wrapperWidth / gameWidth;
         const scaleY = wrapperHeight / gameHeight;
         
         let scale = Math.min(1, scaleX, scaleY);
-
+    
         this.contenitore.style.transform = `scale(${scale})`;
         this.contenitore.style.marginLeft = '0px';
         this.contenitore.style.marginTop = '0px';

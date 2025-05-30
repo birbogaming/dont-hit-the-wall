@@ -8,7 +8,6 @@
     --text-stroke-sm: 0.5px;
     --text-stroke-md: 1px;
     --text-stroke-lg: 2px;
-
     
     --container-width: 80vw;
     --container-height: 60vh;
@@ -177,12 +176,6 @@ body {
     font-size: var(--font-size-xxl);
     color: var(--color-background);
     -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
-    /*text-stroke: var(--text-stroke-md) var(--text-stroke-color);*/
-    text-shadow: 
-        calc(-1 * var(--text-stroke-md)) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
-        var(--text-stroke-md) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
-        calc(-1 * var(--text-stroke-md)) var(--text-stroke-md) 0 var(--text-stroke-color),
-        var(--text-stroke-md) var(--text-stroke-md) 0 var(--text-stroke-color);
     font-weight: bold;
     z-index: 100;
 }
@@ -207,12 +200,6 @@ body {
     font-size: var(--font-size-lg);
     color: var(--color-background);
     -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
-    /*text-stroke: var(--text-stroke-md) var(--text-stroke-color);*/
-    text-shadow: 
-        calc(-1 * var(--text-stroke-md)) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
-        var(--text-stroke-md) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
-        calc(-1 * var(--text-stroke-md)) var(--text-stroke-md) 0 var(--text-stroke-color),
-        var(--text-stroke-md) var(--text-stroke-md) 0 var(--text-stroke-color);
     text-align: center;
     line-height: 1.5;
     z-index: 101;
@@ -238,12 +225,6 @@ body {
 .game-over-text {
     color: var(--color-background);
     -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
-    /*text-stroke: var(--text-stroke-md) var(--text-stroke-color);*/
-    text-shadow: 
-        calc(-1 * var(--text-stroke-md)) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
-        var(--text-stroke-md) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
-        calc(-1 * var(--text-stroke-md)) var(--text-stroke-md) 0 var(--text-stroke-color),
-        var(--text-stroke-md) var(--text-stroke-md) 0 var(--text-stroke-color);
 }
 
 #messaggioRiavvio {
@@ -254,12 +235,6 @@ body {
     font-size: var(--font-size-lg);
     color: var(--color-background);
     -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
-    /*text-stroke: var(--text-stroke-md) var(--text-stroke-color);*/
-    text-shadow: 
-        calc(-1 * var(--text-stroke-md)) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
-        var(--text-stroke-md) calc(-1 * var(--text-stroke-md)) 0 var(--text-stroke-color),
-        calc(-1 * var(--text-stroke-md)) var(--text-stroke-md) 0 var(--text-stroke-color),
-        var(--text-stroke-md) var(--text-stroke-md) 0 var(--text-stroke-color);
     text-align: center;
     line-height: 1.5;
     display: none;
@@ -276,5 +251,19 @@ body {
     }
     50% {
         transform: scale(1.1);
+    }
+}
+
+@media (orientation: portrait) {
+    #gameAreaWrapper {
+        width: 100vw;
+        height: 75vh;
+    }
+    #titleWrapper {
+        height: 20vh;
+    }
+    #displayAnno {
+        left: var(--spacing-lg);
+        transform: none;
     }
 }
