@@ -208,7 +208,7 @@ body {
     position: absolute;
     top: 35%;
     left: 50%;
-    width: 80vw;
+    width: 80%;
     transform: translate(-50%, -50%);
     font-size: var(--font-size-xl);
     text-align: center;
@@ -276,5 +276,9 @@ body {
     }
     #messaggioGameOver{
         font-size:  var(--font-size-lg);
+    }
+    #messaggioRiavvio {
+        font-size: var(--font-size-md);
+        -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
     }
 }
