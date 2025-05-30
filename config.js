@@ -6,10 +6,10 @@ const CONFIG = {
     TERRENO_OFFSET_DAL_FONDO_PX: 9,
 
     // ============== GLOBALE ==============
-    VELOCITA_GIOCO_INIZIALE: 3.5,
+    VELOCITA_GIOCO_INIZIALE: 3.6,
     VELOCITA_INCREMENTO_BASE: 0.4, // Incremento per ogni "anno" superato
-    VELOCITA_INCREMENTO_ANNO_OLTRE_25: 0.2,
-    VELOCITA_INCREMENTO_ANNO_OLTRE_30: 0.1,
+    VELOCITA_INCREMENTO_ANNO_OLTRE_25: 0.3,
+    VELOCITA_INCREMENTO_ANNO_OLTRE_30: 0.2,
     RITARDO_RIAVVIO_MS: 1000, // tempo di attesa prima di poter riavviare dopo un game over
 
     INTERVALLO_CREAZIONE_OSTACOLO_MIN_MS: 2500,
