@@ -175,7 +175,7 @@ body {
     justify-content: center;
     font-size: var(--font-size-xxl);
     color: var(--color-background);
-    -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
+    -webkit-text-stroke: var(--text-stroke-lg) var(--text-stroke-color);
     font-weight: bold;
     z-index: 100;
 }
@@ -198,7 +198,7 @@ body {
     transform: translate(-50%, -50%);
     font-size: var(--font-size-lg);
     color: var(--color-background);
-    -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
+    -webkit-text-stroke: var(--text-stroke-lg) var(--text-stroke-color);
     text-align: center;
     line-height: 1.4;
     z-index: 101;
@@ -206,8 +206,9 @@ body {
 
 #messaggioGameOver {
     position: absolute;
-    top: 30%;
+    top: 35%;
     left: 50%;
+    width: 80vw;
     transform: translate(-50%, -50%);
     font-size: var(--font-size-xl);
     text-align: center;
@@ -223,7 +224,7 @@ body {
 
 .game-over-text {
     color: var(--color-background);
-    -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
+    -webkit-text-stroke: var(--text-stroke-lg) var(--text-stroke-color);
 }
 
 #messaggioRiavvio {
@@ -233,7 +234,7 @@ body {
     transform: translate(-50%, -50%);
     font-size: var(--font-size-lg);
     color: var(--color-background);
-    -webkit-text-stroke: var(--text-stroke-md) var(--text-stroke-color);
+    -webkit-text-stroke: var(--text-stroke-lg) var(--text-stroke-color);
     text-align: center;
     line-height: 1.4;
     display: none;
@@ -272,5 +273,8 @@ body {
     }
     #testoAnno{
      margin-top: 1.4em;    
+    }
+    #messaggioGameOver{
+        font-size:  var(--font-size-lg);
     }
 }
