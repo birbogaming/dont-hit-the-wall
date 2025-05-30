@@ -85,9 +85,9 @@ body {
 #titleWrapper {
     position: relative;
     height: calc(100vh - calc(80vw / 2.25));
-    max-height: 150px;
+    max-height: 100px;
     width: 80vw;
-    max-width: 500px;
+    max-width: 340px;
     margin: 0 auto;
 }
 #titoloGioco {
