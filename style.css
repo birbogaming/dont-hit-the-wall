@@ -183,7 +183,6 @@ body {
 #iconaTortaAnno {
     height: calc(var(--font-size-xxl) * 3);
     width: auto;
-    margin-right: 0.2em;
     transform-origin: center;
 }
 
@@ -263,7 +262,15 @@ body {
         height: 20vh;
     }
     #displayAnno {
-        left: var(--spacing-lg);
+        left: var(--spacing-md);
         transform: none;
+        font-size: var(--font-size-xl);
+    }
+    #iconaTortaAnno {
+        height: calc(var(--font-size-xxl) * 3);        
+        margin-right: - 1rem;       
+    }
+    #testoAnno{
+     margin-top: 1.4em;    
     }
 }
